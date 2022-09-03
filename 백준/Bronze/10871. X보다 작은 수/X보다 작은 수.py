@@ -1,0 +1,5 @@
+n, num = list(map(int, input().split()))
+nums = list(map(int, input().split()))
+nums = list(filter(lambda x: x<num, nums))
+nums = list(map(str, nums))
+print(" ".join(nums))
