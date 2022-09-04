@@ -1,6 +1,10 @@
-n = int(input())
-people = [input().split() for i in range(n)]
-people = [[int(age), name] for [age, name] in people]
+import sys
+
+n = int(sys.stdin.readline())
+people = []
+for _ in range(n):
+    age, name = sys.stdin.readline().split()
+    people.append([int(age), name])
 people.sort(key=lambda x: x[0])
-for person in people:
-    print(*person)
+for age, name in people:
+    print(age, name)
