@@ -1,15 +1,11 @@
-prime = {1: False}
-
-def check_prime(n: int):
-    if n in prime.keys():
-        return prime[n]
-      
+def check_prime(n: int):   
+    if n == 1:
+        return False
+       
     for i in range(2, int(n**0.5)+1):
         if n % i == 0:
-            prime[n] = False
             return False
     
-    prime[n] = True
     return True
         
 
