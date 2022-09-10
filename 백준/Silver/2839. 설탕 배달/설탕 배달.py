@@ -1,11 +1,13 @@
 n = int(input())
 
-ls = set()
-for i in range(n // 3 + 1):
-    for j in range(n // 5 + 1):
-        if 3 * i + 5 * j == n:
-            ls.add(i+j)
-if ls:
-    print(min(ls))
+num = 0
+while n >= 0:
+    if n % 5 == 0:
+        num += n // 5
+        print(num)
+        break
+    else:
+        n -= 3
+        num += 1
 else:
     print(-1)
