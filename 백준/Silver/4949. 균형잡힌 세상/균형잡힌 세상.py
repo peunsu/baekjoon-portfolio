@@ -9,18 +9,12 @@ while True:
         if s == "(":
             stack.append(0)
         elif s == ")":
-            try:
-                if stack.pop() != 0:
-                    break
-            except:
+            if not stack or stack.pop() != 0:
                 break
         elif s == "[":
             stack.append(1)
         elif s == "]":
-            try:
-                if stack.pop() != 1:
-                    break
-            except:
+            if not stack or stack.pop() != 1:
                 break
     else:
         if not stack:
