@@ -3,9 +3,8 @@ import sys
 input = sys.stdin.readline
 
 n = int(input())
-pts = [tuple(map(int, input().split())) for _ in range(n)]
-pts.sort(key=lambda x: x[0])
-pts.sort(key=lambda x: x[1])
+pts = [tuple(map(int, input().split()[::-1])) for _ in range(n)]
+pts.sort()
 
-for x, y in pts:
+for y, x in pts:
     print(f"{x} {y}")
