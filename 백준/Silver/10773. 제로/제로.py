@@ -7,7 +7,7 @@ n = int(input())
 stack = deque()
 
 for _ in range(n):
-    if (i := int(input())) != 0:
+    if i := int(input()):
         stack.append(i)
     else:
         stack.pop()
