@@ -1,19 +1,17 @@
 import sys
 sys.setrecursionlimit(10**6)
 
-def finder(x: int, y: int, arr: list) -> bool:
-    if (target := (x + 1, y)) in arr:
-        arr.remove(target)
-        finder(*target, arr)
-    if (target := (x - 1, y)) in arr:
-        arr.remove(target)
-        finder(*target, arr)
-    if (target := (x, y + 1)) in arr:
-        arr.remove(target)
-        finder(*target, arr)
-    if (target := (x, y - 1)) in arr:
-        arr.remove(target)
-        finder(*target, arr)
+def finder(s: int, t: int, arr: list):
+    arr[t][s] = 0
+    
+    if s + 1 < m and arr[t][s+1] == 1:
+        finder(s+1, t, arr)
+    if t + 1 < n and arr[t+1][s] == 1:
+        finder(s, t+1, arr)
+    if s - 1 >= 0 and arr[t][s-1] == 1:
+        finder(s-1, t, arr)
+    if t - 1 >= 0 and arr[t-1][s] == 1:
+        finder(s, t-1, arr)
 
 input = sys.stdin.readline
 
@@ -21,12 +19,17 @@ t = int(input())
 
 for _ in range(t):
     m, n, k = map(int, input().split())
-    arr = [tuple(map(int, input().split())) for _ in range(k)]
+    arr = [[0] * m for _ in range(n)]
+
+    for _ in range(k):
+        x, y = map(int, input().split())
+        arr[y][x] = 1
     
     cnt = 0
-    while arr:
-        x, y = arr.pop(0)
-        finder(x, y, arr)
-        cnt += 1
+    for i in range(m):
+        for j in range(n):
+            if arr[j][i] == 1:
+                finder(i, j, arr)
+                cnt += 1
     
     print(cnt)
