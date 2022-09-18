@@ -1,18 +1,13 @@
 import sys
 
-def combination(n: int, r: int):
-    result = 1
-    for i in range(n-r+1, n+1):
-        result *= i
-    for j in range(1, r+1):
-        result //= j
-    return result
-
 input = sys.stdin.readline
 
 n = int(input())
+fibo = [1, 1] + [0] * (n-1)
 
-total = 0
-for i in range(n // 2 + 1):
-    total += combination(n-i, i)
-print(total % 10007)
+for i in range(1, n+1):
+    if fibo[i]:
+        continue
+    fibo[i] = fibo[i-2] + fibo[i-1]
+
+print(fibo[n] % 10007)
