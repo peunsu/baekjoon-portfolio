@@ -4,9 +4,9 @@ sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
 
 def dfs(d: int):
-    result.append(d)
+    result[d] = 1
     for i in range(1, n+1):
-        if (i in result) or (net[d][i] == 0):
+        if (result[i]) or (net[d][i] == 0):
             continue
         dfs(i)
         
@@ -14,7 +14,7 @@ def dfs(d: int):
 n, m = map(int, input().split())
 
 net = [[0] * (n+1) for _ in range(n+1)]
-result = []
+result = [0] * (n+1)
 cnt = 0
 
 for _ in range(m):
@@ -23,7 +23,7 @@ for _ in range(m):
     net[b][a] = 1
 
 for i in range(1, n+1):
-    if i not in result:
+    if not result[i]:
         dfs(i)
         cnt += 1
 
