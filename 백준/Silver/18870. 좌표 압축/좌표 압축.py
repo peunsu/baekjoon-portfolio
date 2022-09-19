@@ -1,9 +1,6 @@
 n = int(input())
 nums = list(map(int, input().split()))
-nums_s = sorted(list(set(nums)))
-nums_d = {}
-for i, n in enumerate(nums_s):
-    nums_d[n] = i
+nums_s = sorted(set(nums))
+nums_d = {n: i for i, n in enumerate(nums_s)}
 
-for n in nums:
-    print(nums_d[n], end=" ")
+print(" ".join([str(nums_d[n]) for n in nums]))
