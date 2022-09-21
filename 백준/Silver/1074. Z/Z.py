@@ -7,23 +7,24 @@ def visit_z(x: int, y: int, n: int):
     if n:
         if r < y + d:
             if c < x + d:
-                visit_z(x, y, n-1)
+                pass
             else:
                 cnt += dc
-                visit_z(x+d, y, n-1)
+                c -= d
         else:
             if c < x + d:
                 cnt += dc * 2
-                visit_z(x, y+d, n-1)
+                r -= d
             else:
                 cnt += dc * 3
-                visit_z(x+d, y+d, n-1)
+                c -= d
+                r -= d
+        visit_z(x, y, n-1)
     else:
         if (x, y) == (c, r):
             print(cnt)
             exit(0)
         cnt += 1
-            
 
 n, r, c = map(int, input().split())
 
