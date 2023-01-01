@@ -1,31 +1,32 @@
 import sys
 
 input = sys.stdin.readline
+cnt_w = 0
+cnt_b = 0
 
-cnt_w, cnt_b = 0, 0
-
-def paper(x: int, y: int, n: int):
+def cutter(x, y, size):
     global cnt_w, cnt_b
 
-    start = arr[x][y]
-    for i in range(x, x + n):
-        for j in range(y, y + n):
-            if arr[i][j] != start:
-                paper(x, y, n//2)
-                paper(x+n//2, y, n//2)
-                paper(x, y+n//2, n//2)
-                paper(x+n//2, y+n//2, n//2)
+    if x >= k or y >= k:
+        return
+
+    pt = paper[x][y]
+    for i in range(x, x + size):
+        for j in range(y, y + size):
+            if paper[i][j] != pt:
+                cutter(x, y, size//2)
+                cutter(x + size//2, y, size//2)
+                cutter(x, y+size//2, size//2)
+                cutter(x + size//2, y + size//2, size//2)
                 return
-    
-    if start:
+    if pt:
         cnt_b += 1
     else:
         cnt_w += 1
 
-n = int(input())
-arr = [list(map(int, input().split())) for _ in range(n)]
+k = int(input())
+paper = [list(map(int, input().split())) for _ in range(k)]
 
-paper(0, 0, n)
-
+cutter(0, 0, k)
 print(cnt_w)
 print(cnt_b)
