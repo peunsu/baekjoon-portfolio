@@ -11,11 +11,8 @@ dp[1] = 1
 for i in range(2, n + 1):
     minv = 1000000
     
-    j = 1
-    while (j ** 2 <= i):
+    for j in range(1, int(i**0.5) + 1):
         minv = min(minv, dp[i - j**2])
-        j += 1
-
     dp[i] = minv + 1
 
 print(dp[n])
