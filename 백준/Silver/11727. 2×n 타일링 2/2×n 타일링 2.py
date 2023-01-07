@@ -1,12 +1,12 @@
 import sys
-from math import factorial
 
 input = sys.stdin.readline
 
 n = int(input())
-sum = 0
+dp = [0] * 1001
+dp[1] = 1
+dp[2] = 3
 
-for i in range(n//2 + 1):
-    temp = (factorial(n-i) // (factorial(i) * factorial(n-2*i))) * (2 ** i)
-    sum += temp
-print(sum % 10007)
+for i in range(3, n+1):
+    dp[i] = dp[i-2] * 2 + dp[i-1]
+print(dp[n] % 10007)
