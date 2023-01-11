@@ -1,20 +1,12 @@
-equation = input()
+equation = input().split("-")
 
-nums = []
-operators = []
+tot = 0
 
-s = 0
-for i, eq in enumerate(equation):
-    if not eq.isnumeric():
-        nums.append(int(equation[s:i]))
-        operators.append(equation[i])
-        s = i + 1
-    if i == len(equation) - 1:
-        nums.append(int(equation[s:]))
+for eq in equation[0].split("+"):
+    tot += int(eq)
+    
+for eq in equation[1:]:
+    for e in eq.split("+"):
+        tot -= int(e)
 
-for i, op in enumerate(operators):
-    if op == "-":
-        nums[i+1:] = [-n for n in nums[i+1:]]
-        break
-
-print(sum(nums))
+print(tot)
