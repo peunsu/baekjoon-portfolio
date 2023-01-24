@@ -11,7 +11,6 @@ def dfs(p: int, visited: list):
 
 n = int(input())
 graph = [list(map(int, input().split())) for _ in range(n)]
-result = [[0] * n for _ in range(n)]
 
 for i in range(n):
     print(*dfs(i, [0] * n))
