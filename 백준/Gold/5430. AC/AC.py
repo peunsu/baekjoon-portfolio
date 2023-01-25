@@ -6,7 +6,7 @@ input = sys.stdin.readline
 t = int(input())
 
 for _ in range(t):
-    p = input().rstrip()
+    p = input().rstrip().replace("RR", "")
     n = int(input())
     arr = input().strip("[]\n").split(",")
     arr = deque() if arr == [''] else deque(arr)
