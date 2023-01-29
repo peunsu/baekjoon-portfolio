@@ -2,12 +2,6 @@ import sys
 from collections import deque
 input = sys.stdin.readline
 
-def double(n: int) -> int:
-    return n * 2
-
-def add_one(n: int) -> int:
-    return n * 10 + 1
-
 def half(n: int) -> int:
     if n % 2 == 0:
         return n // 2
