@@ -2,39 +2,31 @@ import sys
 input = sys.stdin.readline
 
 def preorder(v: str) -> str:
+    if v == '.':
+        return ''
+
     result = v
-    if tree[v][0] != '.':
-        result += preorder(tree[v][0])
-        if tree[v][1] != '.':
-            result += preorder(tree[v][1])
-    else:
-        if tree[v][1] != '.':
-            result += preorder(tree[v][1])
+    result += preorder(tree[v][0])
+    result += preorder(tree[v][1])
     
     return result
     
 def inorder(v: str) -> str:
-    result = v
-    if tree[v][0] != '.':
-        result = inorder(tree[v][0]) + result
-        if tree[v][1] != '.':
-            result += inorder(tree[v][1])
-    else:
-        if tree[v][1] != '.':
-            result += inorder(tree[v][1])
+    if v == '.':
+        return ''
+
+    result = inorder(tree[v][0])
+    result += v
+    result += inorder(tree[v][1])
     
     return result
 
-def postorder(v: str):
-    result = ''
-    if tree[v][0] != '.':
-        result = postorder(tree[v][0]) + result
-        if tree[v][1] != '.':
-            result += postorder(tree[v][1])
-    else:
-        if tree[v][1] != '.':
-            result = postorder(tree[v][1]) + result
+def postorder(v: str) -> str:
+    if v == '.':
+        return ''
     
+    result = postorder(tree[v][0])
+    result += postorder(tree[v][1])
     result += v
 
     return result
