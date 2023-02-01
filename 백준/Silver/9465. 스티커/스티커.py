@@ -16,4 +16,4 @@ for _ in range(t):
         sticker[0][i] += max(sticker[1][i-1], sticker[1][i-2])
         sticker[1][i] += max(sticker[0][i-1], sticker[0][i-2])
     
-    print(max(list(zip(*sticker))[n-1]))
+    print(max(sticker[0][n-1], sticker[1][n-1]))
