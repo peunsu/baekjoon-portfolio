@@ -1,29 +1,29 @@
 import sys
 input = sys.stdin.readline
 
-def find_min() -> int:
-    window = [[0, 0, 0], [0, 0, 0]]
-    window[0] = nums[0][:]
-    for i in range(1, n):
-        window[1] = nums[i][:]
-        window[1][0] += min(window[0][:2])
-        window[1][1] += min(window[0])
-        window[1][2] += min(window[0][1:])
-        window[0] = window[1]
-    return min(window[0])
-
-def find_max() -> int:
-    window = [[0, 0, 0], [0, 0, 0]]
-    window[0] = nums[0][:]
-    for i in range(1, n):
-        window[1] = nums[i][:]
-        window[1][0] += max(window[0][:2])
-        window[1][1] += max(window[0])
-        window[1][2] += max(window[0][1:])
-        window[0] = window[1]
-    return max(window[0])
-
 n = int(input())
-nums = [list(map(int, input().split())) for _ in range(n)]
 
-print(find_max(), find_min())
+window_max = [[0, 0, 0], [0, 0, 0]]
+window_min = [[0, 0, 0], [0, 0, 0]]
+
+for i in range(n):
+    nums = list(map(int, input().split()))
+
+    if i == 0:
+        window_max[0] = nums.copy()
+        window_min[0] = nums.copy()
+        continue
+    
+    window_max[1] = nums.copy()
+    window_max[1][0] += max(window_max[0][:2])
+    window_max[1][1] += max(window_max[0])
+    window_max[1][2] += max(window_max[0][1:])
+    window_max[0] = window_max[1]
+
+    window_min[1] = nums.copy()
+    window_min[1][0] += min(window_min[0][:2])
+    window_min[1][1] += min(window_min[0])
+    window_min[1][2] += min(window_min[0][1:])
+    window_min[0] = window_min[1]
+
+print(max(window_max[0]), min(window_min[0]))
