@@ -24,6 +24,9 @@ while heap:
     if v == end:
         break
 
+    if c > costs[v]:
+        continue
+
     for c_, v_ in graph[v]:
         cost_ = costs[v] + c_
         if cost_ < costs[v_]:
