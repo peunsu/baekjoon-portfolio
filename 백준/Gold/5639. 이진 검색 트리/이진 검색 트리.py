@@ -3,7 +3,7 @@ sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
 
 def postorder(first, end):
-    if first == end:
+    if first >= end:
         return
 
     root = tree_pre[first]
