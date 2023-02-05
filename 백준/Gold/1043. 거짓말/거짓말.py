@@ -1,22 +1,17 @@
 import sys
-from collections import deque
 input = sys.stdin.readline
 
 n, m = map(int, input().split())
-_, *truth = map(int, input().split())
+truth = set(map(int, input().split()[1:]))
+party = [set(map(int, input().split()[1:])) for _ in range(m)]
 
-visited = [0] * (m)
+for _ in range(m):
+    for p in party:
+        if p.intersection(truth):
+            truth = p.union(truth)
 
-party = [list(map(int, input().split()))[1:] for _ in range(m)]
-
-queue = deque(truth)
-while queue:
-    people = queue.popleft()
-    for i in range(m):
-        if visited[i]:
-            continue
-        if people in party[i]:
-            visited[i] = 1
-            queue.extend(party[i])
-
-print(visited.count(0))
+cnt = 0
+for p in party:
+    if not p.intersection(truth):
+        cnt += 1
+print(cnt)
