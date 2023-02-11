@@ -8,7 +8,6 @@ stack = []
 for s in string:
     stack.append(s)
     if s == last_explosion and "".join(stack[-len_explosion:]) == explosion:
-        for _ in range(len_explosion):
-            stack.pop()
+        del(stack[-len_explosion:])
 
 print("".join(stack) if stack else "FRULA")
