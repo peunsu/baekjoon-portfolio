@@ -7,7 +7,7 @@ len_explosion = len(explosion)
 stack = []
 for s in string:
     stack.append(s)
-    if stack[-1] == explosion[-1] and "".join(stack[-len_explosion:]) == explosion:
+    if s == last_explosion and "".join(stack[-len_explosion:]) == explosion:
         for _ in range(len_explosion):
             stack.pop()
 
