@@ -18,7 +18,4 @@ def matsquare(A, n):
 n = int(input())
 fibo = [[1, 1], [1, 0]]
 
-if n == 0:
-    print(0)
-else:
-    print(matsquare(fibo, n)[0][1])
+print(matsquare(fibo, n)[0][1])
