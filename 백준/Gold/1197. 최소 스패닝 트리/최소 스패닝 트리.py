@@ -10,11 +10,10 @@ for _ in range(e):
     graph[a].append((c, b))
     graph[b].append((c, a))
 
-u = 1
 sum_c = 0
 visited = [0] * (v+1)
-visited[u] = 1
-heap = graph[u]
+visited[1] = 1
+heap = graph[1]
 heapify(heap)
 while heap:
     c, u = heappop(heap)
