@@ -3,28 +3,33 @@ from heapq import heappush, heappop, heapify
 input = sys.stdin.readline
 
 v, e = map(int, input().split())
-graph = [[] * (v+1) for _ in range(v+1)]
+edges = []
 
 for _ in range(e):
     a, b, c = map(int, input().split())
-    graph[a].append((c, b))
-    graph[b].append((c, a))
+    edges.append((c, a, b))
 
-sum_c = 0
-visited = [0] * (v+1)
-visited[1] = 1
-heap = graph[1]
-heapify(heap)
-while heap:
-    c, u = heappop(heap)
+parents = [i for i in range(v+1)]
 
-    if visited[u]:
-        continue
+def find(x: int):
+    if parents[x] == x:
+        return x
+    return find(parents[x])
 
-    visited[u] = 1
-    sum_c += c
-    for c_, u_ in graph[u]:
-        if not visited[u_]:
-            heappush(heap, (c_, u_))
+def union(x: int, y: int):
+    x_parent = find(x)
+    y_parent = find(y)
+    if x_parent < y_parent:
+        parents[y_parent] = x_parent
+    else:
+        parents[x_parent] = y_parent
 
-print(sum_c)
+heapify(edges)
+sum_cost = 0
+while edges:
+    cost, u, v = heappop(edges)
+    if find(u) != find(v):
+        union(u, v)
+        sum_cost += cost
+
+print(sum_cost)
