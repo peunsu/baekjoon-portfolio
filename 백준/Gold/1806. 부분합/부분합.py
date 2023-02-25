@@ -9,11 +9,10 @@ right = 0
 length = 1
 min_length = float('inf')
 total = seq[0]
-while left <= right:
+while True:
     if total < s:
         right += 1
         length += 1
-
         if right >= n:
             break
 
