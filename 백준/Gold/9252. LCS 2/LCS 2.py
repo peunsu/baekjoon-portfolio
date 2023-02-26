@@ -4,7 +4,7 @@ input = sys.stdin.readline
 def trace_back(x, y):
     result = []
 
-    while x >= 0 and y >= 0:
+    while x > 0 and y > 0:
         if dp[x][y] == dp[x-1][y]:
             x -= 1
         elif dp[x][y] == dp[x][y-1]:
