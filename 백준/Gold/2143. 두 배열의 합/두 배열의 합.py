@@ -5,8 +5,8 @@ input = sys.stdin.readline
 def count_cases(A, B) -> int:
     cnt = 0
     for a in A:
-        if t - a in B:
-            cnt += A[a] * B[t-a]
+        if (b := t - a) in B:
+            cnt += A[a] * B[b]
     return cnt
 
 t = int(input())
