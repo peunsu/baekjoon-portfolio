@@ -1,13 +1,12 @@
 import sys
-from bisect import bisect_left, bisect_right
+from collections import defaultdict
 input = sys.stdin.readline
 
-def bisect_search(sorted, comparison) -> int:
+def count_cases(A, B) -> int:
     cnt = 0
-    for a in comparison:
-        right = bisect_right(sorted, t-a)
-        left = bisect_left(sorted, t-a)
-        cnt += right - left
+    for a in A:
+        if t - a in B:
+            cnt += A[a] * B[t-a]
     return cnt
 
 t = int(input())
@@ -16,14 +15,20 @@ A = list(map(int, input().split()))
 m = int(input())
 B = list(map(int, input().split()))
 
-sum_A = [sum(A[i:j+1]) for i in range(n) for j in range(i, n)]
-sum_B = [sum(B[i:j+1]) for i in range(m) for j in range(i, m)]
+sum_A = defaultdict(int)
+for i in range(n):
+    temp = 0
+    for j in range(i, n):
+        temp += A[j]
+        sum_A[temp] += 1
 
-if n < m:
-    sum_A.sort()
-    ans = bisect_search(sum_A, sum_B)
-else:
-    sum_B.sort()
-    ans = bisect_search(sum_B, sum_A)
+sum_B = defaultdict(int)
+for i in range(m):
+    temp = 0
+    for j in range(i, m):
+        temp += B[j]
+        sum_B[temp] += 1
+
+ans = count_cases(sum_A, sum_B)
 
 print(ans)
