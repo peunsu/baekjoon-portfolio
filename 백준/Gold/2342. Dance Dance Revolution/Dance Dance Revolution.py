@@ -19,10 +19,6 @@ dp[0][0][0] = 0
 
 for i in range(n):
     k = seq[i]
-    if i == 0:
-        dp[i+1][0][k] = dp[i+1][k][0] = 2
-        continue
-    
     for x in range(5):
         for y in range(5):
             if x != k:
