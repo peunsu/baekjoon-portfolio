@@ -18,22 +18,25 @@ def bfs(x, y, visited, keys):
                 if not visited[nx][ny]:
                     visited[nx][ny] = True
                     
+                    if floor[nx][ny] == '*':
+                        continue
                     if floor[nx][ny] == '.':
                         queue.append((nx, ny))
                     elif floor[nx][ny] == '$':
                         cnt += 1
                         queue.append((nx, ny))
                         floor[nx][ny] = '.'
-                    elif floor[nx][ny].isalpha():
-                        if floor[nx][ny].islower():
+                    elif 'a' <= floor[nx][ny] <= 'z':
+                        keys.add(floor[nx][ny])
+                        floor[nx][ny] = '.'
+                        visited = [[False] * (w + 2) for _ in range(h + 2)]
+                        queue.clear()
+                        queue.append((nx, ny))
+                    elif 'A' <= floor[nx][ny] <= 'Z':
+                        if floor[nx][ny].lower() in keys:
                             queue.append((nx, ny))
-                            keys.add(floor[nx][ny])
                             floor[nx][ny] = '.'
-                            visited = [[False] * (w + 2) for _ in range(h + 2)]
-                        else:
-                            if floor[nx][ny].lower() in keys:
-                                queue.append((nx, ny))
-                                floor[nx][ny] = '.'
+                    
         
 
 n = int(input())
